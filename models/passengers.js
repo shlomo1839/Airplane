@@ -1,24 +1,60 @@
+import { Ticket } from "./tickets";
+
 class Passenger {
-    constructor(name, idNumber, amount) {
+    constructor(name, id, amount) {
         this.name = name;
-        this.idNumber = idNumber;
+        this.id = id;
         this.amount = amount;
     }
-}
 
-class StudentPassenger extends Passenger {
-    constructor(School){
-        super(name, idNumber, amount)
-        this.school = school;
+    buyTicket(flight, ticketType) {
+        const ticketToBuy = flight.getAvailableTicket(ticketType);
+        if (!ticketToBuy) {
+            return false;
+        }
+        const priceToPay = this.calculatePrice(Ticket.price, ticketType);
+        if (this.amount < priceToPay) {
+            return false;
+        }
+        this.amount -= priceToPay;
+        Ticket.ownerName = this.name;
+        return true;
     }
 
-    discount(){
+}
 
+export class StudentPassenger extends Passenger {
+    constructor(name, id, amount, School){
+        super(name, id, amount)
+        this.School = School;
+    }
+
+    calculateDiscount(originalPrice, ticketType){
+        if (ticketType === 'regular') {
+            return originalPrice * 0.9
+        }
+        return originalPrice
     }
 }
 
-class RgularPassenger extends Passenger {
-    constructor(workplace, employee) {
-        super(name, idNumber, amount)
+export class RgularPassenger extends Passenger {
+    constructor(name, id, amount, workplace, knowsEmployee) {
+        super(name, id, amount)
+        this.workplace = workplace;
+        this.knowsEmployee = knowsEmployee
+    }
+
+    calculateDiscount(originalPrice, ticketType) {
+        if (this.knowsEmployee) {
+            if (ticketType === 'regular') {
+                return originalPrice * 0.8
+            }
+            if (ticketType === 'VIP') {
+                return originalPrice * 0.85
+            }
+            console.log("no diccount")
+            return originalPrice;
+        }
+
     }
 }

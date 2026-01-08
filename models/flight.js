@@ -1,15 +1,14 @@
-class Flight {
-    constructor(flightName, airline, flightNumber, maxPassengers, rgularTicketPrice, vipTicketPrice) {
-        this.flightName = flightName;
+import { RegularTicket, VIPTicket } from "./tickets";
+
+
+export class Flight {
+    constructor(name, airline, flightNumber, maxPassengers, rgularPrice, vipPrice) {
+        this.name = name;
         this.airline = airline;
         this.flightNumber = flightNumber;
         this.maxPassengers = maxPassengers;
-        this.rgularTicketPrice = rgularTicketPrice;
-        this.vipTicketPrice = vipTicketPrice;
-        this.ticketsList = []
+        this.rgularPrice = rgularPrice;
+        this.vipPrice = vipPrice;
+        this.ticketsList = [];
     }
 }
-
-
-
-export default Flight;
