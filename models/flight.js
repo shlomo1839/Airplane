@@ -10,5 +10,21 @@ export class Flight {
         this.rgularPrice = rgularPrice;
         this.vipPrice = vipPrice;
         this.ticketsList = [];
+        this.initTickets();
+    }
+
+    initTickets() {
+        // vip can be only 10 %
+        const vipCount = Math.ceil(this.maxPassengers * 0.1);
+        // the rest of passengers
+        const regularCount = this.maxPassengers - vipCount;
+        
+        for(let i = 0; i < vipCount; i++){
+            this.ticketsList.push(new VIPTicket)
+        }
+            
+        for(let i = 0; i < regularCount; i++){
+            this.ticketsList.push(new RegularTicket)
+        }
     }
 }

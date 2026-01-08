@@ -5,7 +5,7 @@ export class Airport {
         this.flights = [];
         this.initFlight();
     }
-
+    
     initFlight() {
         
         const flight1 = new Flight("usa", "elal", "888", 100, 200, 500);
