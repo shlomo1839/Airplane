@@ -21,29 +21,6 @@ describe('Ticket Purchase Flow', () => {
 
         const soldTicket = flight.tickets.find(t => t.ownerName === "someone reach");
         assert.ok(soldTicket);
-    });
-})
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    })
+});
 
